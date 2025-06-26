@@ -14,7 +14,7 @@
     <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png" sizes="512x512">
-    <title>111222333</title>
+    <title>ChatHave.com</title>
     <style>
         .requestBody,
         .response .responseBody {
@@ -2615,6 +2615,22 @@
                 <path fill="currentColor"
                     d="m3.975 17l3.75-10h1.8l3.75 10H11.55l-.9-2.55H6.6L5.7 17H3.975Zm3.15-4h3l-1.45-4.15h-.1L7.125 13Zm9.225 4.275q-1.225 0-1.925-.638t-.7-1.737q0-1.05.813-1.713t2.087-.662q.575 0 1.063.088t.837.287v-.35q0-.675-.462-1.075t-1.263-.4q-.525 0-.988.225t-.787.65l-1.075-.8q.475-.675 1.2-1.025t1.675-.35q1.55 0 2.375.738t.825 2.137v4.4H18.55v-.85h-.075q-.325.5-.875.788t-1.25.287Zm.25-1.25q.8 0 1.363-.563t.562-1.362q-.35-.2-.8-.3t-.825-.1q-.8 0-1.225.313t-.425.887q0 .5.375.813t.975.312Z" />
             </symbol>
+            <symbol viewBox="0 0 24 24" id="metaIcon">
+                <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="grokIcon">
+                <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="mistralIcon">
+                <path fill="#FF7000" d="M12 2L3 7v10l9 5 9-5V7l-9-5zm6.5 14.5L12 20l-6.5-3.5v-9L12 4l6.5 3.5v9z"/>
+                <path fill="#FF7000" d="M12 6.5L7.5 9v6L12 17.5 16.5 15V9L12 6.5z"/>
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="microsoftIcon">
+                <path fill="#F25022" d="M1 1h10v10H1z"/>
+                <path fill="#7FBA00" d="M13 1h10v10H13z"/>
+                <path fill="#00A4EF" d="M1 13h10v10H1z"/>
+                <path fill="#FFB900" d="M13 13h10v10H13z"/>
+            </symbol>
         </svg>
     </div>
     <div id="loadMask">
@@ -2687,7 +2703,7 @@
                 <div class="divider"></div>
                 <div class="links">
                     <a href="https://github.com/xqdoo00o/chatgpt-web" target="_blank"
-                        rel="noopener noreferrer">111222333</a>
+                        rel="noopener noreferrer">V:salute777888</a>
                 </div>
             </div>
         </nav>
@@ -2738,71 +2754,24 @@
                         </div>
                         <div>GPT-4o-mini</div>
                     </div>
-                    <div class="modelSingle" data-value="o1" data-type="1" data-ver="o1">
-                        <div class="modelAvatar gptAvatar">
-                            <svg width="24" height="24">
-                                <use xlink:href="#aiIcon"></use>
-                            </svg>
-                        </div>
-                        <div>o1</div>
-                    </div>
-                    <div class="modelSingle" data-value="o3" data-type="1" data-ver="o3 mini">
-                        <div class="modelAvatar gptAvatar">
-                            <svg width="24" height="24">
-                                <use xlink:href="#aiIcon"></use>
-                            </svg>
-                        </div>
-                        <div>o3-mini</div>
-                    </div>
-                    <div class="modelSingle hide" id="customGPTDOM" data-type="1" data-value="" data-ver="">
-                        <div class="modelAvatar gptAvatar">
-                            <svg width="24" height="24">
-                                <use xlink:href="#aiIcon"></use>
-                            </svg>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div class="modelSingle" data-value="deepseek-chat" data-type="2" data-ver="Chat">
+                    <div class="modelSingle" data-value="anthropic/claude-3.5-sonnet" data-type="1"
+                        data-ver="3.5 Sonnet">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#deepseekIcon"></use>
+                                <use xlink:href="#claudeIcon"></use>
                             </svg>
                         </div>
-                        <div>DeepSeek Chat</div>
+                        <div>Claude 3.5 Sonnet</div>
                     </div>
-                    <div class="modelSingle" data-value="deepseek-reasoner" data-type="2" data-ver="Reasoner">
+                    <!-- <div class="modelSingle" data-value="google/gemini-2.0-flash-exp" data-type="1" data-ver="2.0 Flash">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#deepseekIcon"></use>
+                                <use xlink:href="#geminiIcon"></use>
                             </svg>
                         </div>
-                        <div>DeepSeek Reasoner</div>
-                    </div>
-                    <div class="modelSingle hide" id="customDeepSeekDOM" data-type="2" data-value="" data-ver="">
-                        <div class="modelAvatar">
-                            <svg width="30" height="30">
-                                <use xlink:href="#deepseekIcon"></use>
-                            </svg>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div class="modelSingle" data-value="azure|gpt-4o" data-type="3" data-ver="4o">
-                        <div class="modelAvatar">
-                            <svg width="30" height="30">
-                                <use xlink:href="#azureAIIcon"></use>
-                            </svg>
-                        </div>
-                        <div>Azure gpt-4o</div>
-                    </div>
-                    <div class="modelSingle hide" id="customAzureAIDOM" data-type="3" data-value="" data-ver="">
-                        <div class="modelAvatar">
-                            <svg width="30" height="30">
-                                <use xlink:href="#azureAIIcon"></use>
-                            </svg>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div class="modelSingle" data-value="gemini-1.5-flash" data-type="4" data-ver="1.5 Flash">
+                        <div>Gemini 2.0 Flash</div>
+                    </div> -->
+                    <div class="modelSingle" data-value="google/gemini-flash-1.5" data-type="1" data-ver="1.5 Flash">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
                                 <use xlink:href="#geminiIcon"></use>
@@ -2810,53 +2779,63 @@
                         </div>
                         <div>Gemini 1.5 Flash</div>
                     </div>
-                    <div class="modelSingle" data-value="gemini-1.5-pro" data-type="4" data-ver="1.5 Pro">
+                    <div class="modelSingle" data-value="meta-llama/llama-3.1-70b-instruct" data-type="1"
+                        data-ver="3.1 70B">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#geminiIcon"></use>
+                                <use xlink:href="#metaIcon"></use>
                             </svg>
                         </div>
-                        <div>Gemini 1.5 Pro</div>
+                        <div>Llama 3.1 70B</div>
                     </div>
-                    <div class="modelSingle" data-value="gemini-2.0-flash" data-type="4" data-ver="2.0 Flash">
+                    <div class="modelSingle" data-value="deepseek/deepseek-chat" data-type="1" data-ver="Chat">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#geminiIcon"></use>
+                                <use xlink:href="#deepseekIcon"></use>
                             </svg>
                         </div>
-                        <div>Gemini 2.0 Flash</div>
+                        <div>DeepSeek Chat</div>
                     </div>
-                    <div class="modelSingle hide" id="customGeminiDOM" data-type="4" data-value="" data-ver="">
+                    <div class="modelSingle" data-value="x-ai/grok-beta" data-type="1" data-ver="Grok 3">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#geminiIcon"></use>
+                                <use xlink:href="#grokIcon"></use>
                             </svg>
                         </div>
-                        <div></div>
+                        <div>Grok 3</div>
                     </div>
-                    <div class="modelSingle" data-value="claude-3-haiku-latest" data-type="5" data-ver="3 Haiku">
+                    <div class="modelSingle" data-value="deepseek/deepseek-r1" data-type="1" data-ver="Reasoner">
+                        <div class="modelAvatar">
+                            <svg width="30" height="30">
+                                <use xlink:href="#deepseekIcon"></use>
+                            </svg>
+                        </div>
+                        <div>DeepSeek Reasoner</div>
+                    </div>
+                    <div class="modelSingle" data-value="mistralai/mistral-small" data-type="1" data-ver="Small 3.2">
+                        <div class="modelAvatar">
+                            <svg width="30" height="30">
+                                <use xlink:href="#mistralIcon"></use>
+                            </svg>
+                        </div>
+                        <div>Mistral Small 3.2</div>
+                    </div>
+                    <div class="modelSingle" data-value="anthropic/claude-3.5-haiku" data-type="1" data-ver="3.5 Haiku">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
                                 <use xlink:href="#claudeIcon"></use>
                             </svg>
                         </div>
-                        <div>Claude 3 Haiku</div>
+                        <div>Claude 3.5 Haiku</div>
                     </div>
-                    <div class="modelSingle" data-value="claude-3-sonnet-latest" data-type="5" data-ver="3 Sonnet">
+                    <div class="modelSingle" data-value="microsoft/phi-3.5-mini-instruct" data-type="1"
+                        data-ver="Phi 3.5">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
-                                <use xlink:href="#claudeIcon"></use>
+                                <use xlink:href="#microsoftIcon"></use>
                             </svg>
                         </div>
-                        <div>Claude 3 Sonnet</div>
-                    </div>
-                    <div class="modelSingle" data-value="claude-3-opus-latest" data-type="5" data-ver="3 Opus">
-                        <div class="modelAvatar">
-                            <svg width="30" height="30">
-                                <use xlink:href="#claudeIcon"></use>
-                            </svg>
-                        </div>
-                        <div>Claude 3 Opus</div>
+                        <div>Phi 3.5 Mini</div>
                     </div>
                     <div class="modelSingle hide" id="customClaudeDOM" data-type="5" data-value="" data-ver="">
                         <div class="modelAvatar">
