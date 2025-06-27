@@ -2839,6 +2839,38 @@
                         </div>
                         <div>Phi 3.5 Mini</div>
                     </div>
+                    <div class="modelSingle hide" id="customGPTDOM" data-type="1" data-value="" data-ver="">
+                        <div class="modelAvatar">
+                            <svg width="24" height="24">
+                                <use xlink:href="#aiIcon"></use>
+                            </svg>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="modelSingle hide" id="customDeepSeekDOM" data-type="2" data-value="" data-ver="">
+                        <div class="modelAvatar">
+                            <svg width="30" height="30">
+                                <use xlink:href="#deepseekIcon"></use>
+                            </svg>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="modelSingle hide" id="customAzureAIDOM" data-type="3" data-value="" data-ver="">
+                        <div class="modelAvatar">
+                            <svg width="30" height="30">
+                                <use xlink:href="#azureAIIcon"></use>
+                            </svg>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="modelSingle hide" id="customGeminiDOM" data-type="4" data-value="" data-ver="">
+                        <div class="modelAvatar">
+                            <svg width="30" height="30">
+                                <use xlink:href="#geminiIcon"></use>
+                            </svg>
+                        </div>
+                        <div></div>
+                    </div>
                     <div class="modelSingle hide" id="customClaudeDOM" data-type="5" data-value="" data-ver="">
                         <div class="modelAvatar">
                             <svg width="30" height="30">
@@ -6172,14 +6204,14 @@
             if (ele.parentElement.className === "request") {
                 ele.innerHTML = `<img src="${userAvatar}" />`;
             } else {
-                if (model.startsWith("gpt") || model.startsWith("o")) {
+                if (model && (model.startsWith("gpt") || model.startsWith("o"))) {
                     ele.classList.add("gptAvatar")
                     ele.innerHTML = `<svg width="24" height="24"><use xlink:href="#aiIcon"></use></svg>`;
-                } else if (model.startsWith("deepseek")) {
+                } else if (model && model.startsWith("deepseek")) {
                     ele.innerHTML = `<svg width="30" height="30"><use xlink:href="#deepseekIcon"></use></svg>`;
-                } else if (model.startsWith("azure")) {
+                } else if (model && model.startsWith("azure")) {
                     ele.innerHTML = `<svg width="30" height="30"><use xlink:href="#azureAIIcon"></use></svg>`;
-                } else if (model.startsWith("gemini")) {
+                } else if (model && model.startsWith("gemini")) {
                     ele.innerHTML = `<svg width="30" height="30"><use xlink:href="#geminiIcon"></use></svg>`;
                 } else {
                     ele.innerHTML = `<svg width="30" height="30"><use xlink:href="#claudeIcon"></use></svg>`;
@@ -6538,6 +6570,11 @@
         const addNewChat = () => {
             let chat = { name: translations[locale]["newChatName"], data: [] };
             if (presetRoleData.default) chat.data.unshift({ role: "system", content: presetRoleData.default });
+
+            // 添加初始 AI 问候消息
+            const welcomeMessage = "👋 您好！欢迎使用 ChatHave.com！我是您的 AI 助手，很高兴为您服务。\n\n您可以直接在下方输入任何问题，我支持文本对话、代码编写、翻译创作等多种任务。右上角可以切换 GPT-4、Claude 等不同模型，左侧面板有专业助手、创意助手等角色预设可选。\n\n描述问题越详细回答越准确，我会记住上下文进行多轮对话。现在请告诉我您想聊什么吧！";
+            chat.data.push({ role: "assistant", content: welcomeMessage });
+
             preEle.selectedIndex = 0;
             chatsData.push(chat);
             chatIdxs.push(chatsData.length - 1);
@@ -7321,6 +7358,14 @@
                 localStorage.setItem("APIKey", customAPIKey);
             }
             keyEle.dispatchEvent(new Event("change"));
+            
+            // Custom DOM elements
+            const customGPTDOM = document.getElementById("customGPTDOM");
+            const customDeepSeekDOM = document.getElementById("customDeepSeekDOM");
+            const customAzureAIDOM = document.getElementById("customAzureAIDOM");
+            const customGeminiDOM = document.getElementById("customGeminiDOM");
+            const customClaudeDOM = document.getElementById("customClaudeDOM");
+            
             const modelEle = document.getElementById("modelInput");
             let localModel = localStorage.getItem("APIModel");
             customAPIModel = envAPIModel || localModel || modelEle.getAttribute("value") || "";
