@@ -1,5 +1,5 @@
 //更新缓存
-const cacheName = "caches-v1.0.2";
+const cacheName = "caches-v1.0.3";
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
