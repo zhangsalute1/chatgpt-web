@@ -53,6 +53,13 @@
             --code-color: #f0f0f0;
             --black-color: #000;
             --gpt-icon-color: #0d0d0d;
+            --main-btn: #4285f4;
+            --main-btn-hover: #3367d6;
+            --border-color: #e0e0e0;
+            --success-color: #34a853;
+            --error-color: #ea4335;
+            --warning-color: #fbbc04;
+            --test-header-bg: #f8f9fa;
         }
 
         [data-theme="dark"] {
@@ -73,6 +80,13 @@
             --code-color: #101010;
             --black-color: #fff;
             --gpt-icon-color: #ececec;
+            --main-btn: #1a73e8;
+            --main-btn-hover: #1557b0;
+            --border-color: #3c4043;
+            --success-color: #34a853;
+            --error-color: #ea4335;
+            --warning-color: #fbbc04;
+            --test-header-bg: #2d2d2d;
         }
 
         body {
@@ -791,7 +805,7 @@
             position: absolute;
             z-index: 2;
             background: var(--main-back);
-            width: 240px;
+            width: 300px;
             left: 50%;
             transform: translateX(-50%);
             top: 46px;
@@ -805,13 +819,17 @@
         }
 
         .modelSingle {
-            height: 40px;
-            border-radius: 3px;
+            height: 54px;
+            border-radius: 6px;
             cursor: pointer;
-            line-height: 40px;
+            line-height: 54px;
             display: flex;
             align-items: center;
             position: relative;
+            margin: 3px 0;
+            padding: 0 16px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
         }
 
         .modelSingle * {
@@ -820,28 +838,200 @@
 
         .modelSingle:hover {
             background-color: var(--active-btn);
+            border-color: var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .activeModel {
+            background-color: var(--lighter-active);
+            border-color: var(--main-btn);
         }
 
         .activeModel::before {
             content: "";
             position: absolute;
-            right: 15px;
-            top: 7px;
+            right: 44px;
+            top: 13px;
             width: 8px;
             height: 16px;
-            border-color: #99c959;
+            border-color: var(--main-btn);
             border-style: solid;
-            border-width: 0 4px 4px 0;
+            border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
 
+        .modelSingle>div:nth-child(2) {
+            flex: 1;
+            font-weight: 500;
+            color: var(--chat-text-color);
+            font-size: 16px;
+            padding-right: 16px;
+            white-space: nowrap;
+            min-width: 0;
+            line-height: 1.2;
+        }
+
+
+
         .modelAvatar {
-            margin-left: 6px;
-            margin-right: 10px;
-            width: 30px;
+            margin-left: 0;
+            margin-right: 18px;
+            width: 38px;
             flex-shrink: 0;
-            border-radius: 2px;
-            height: 30px;
+            border-radius: 6px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--lighter-active);
+            border: 1px solid var(--border-color);
+        }
+
+        /* 模型连通性测试相关样式 */
+        .model-test-header {
+            padding: 18px 20px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: -8px -5px 12px -5px;
+            background: var(--test-header-bg);
+            color: var(--btn-color);
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px 6px 0 0;
+            white-space: nowrap;
+        }
+
+        .model-test-header span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+
+        .test-all-btn {
+            background: var(--main-btn);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+
+
+        .test-all-btn:hover {
+            background: var(--main-btn-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .test-all-btn.testing {
+            background: var(--warning-color);
+            cursor: not-allowed;
+            animation: testing-pulse 1.5s infinite;
+        }
+
+
+
+        @keyframes testing-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .model-status {
+            margin-left: auto;
+            margin-right: 12px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .model-status:hover {
+            transform: scale(1.2);
+        }
+
+        .model-status.unknown {
+            background: #9e9e9e;
+        }
+
+        .model-status.testing {
+            background: var(--warning-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        .model-status.success {
+            background: var(--success-color);
+        }
+
+        .model-status.error {
+            background: var(--error-color);
+        }
+
+        .model-status::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.8;
+        }
+
+        .model-status.testing::after {
+            animation: inner-pulse 1s infinite;
+        }
+
+        @keyframes inner-pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         #setDialog {
@@ -849,7 +1039,7 @@
             position: absolute;
             z-index: 2;
             background: var(--main-back);
-            width: 320px;
+            width: 520px;
             right: 6px;
             top: 46px;
             overflow-y: auto;
@@ -2740,6 +2930,11 @@
                     </button>
                 </div>
                 <div id="modelDialog" style="display:none;">
+                    <div class="model-test-header">
+                        <span>📡 模型连通性测试</span>
+                        <button class="test-all-btn" onclick="testAllModels()">⚡ 测试所有模型</button>
+                    </div>
+
                     <div class="modelSingle" data-value="gpt-4o" data-type="1" data-ver="4o">
                         <div class="modelAvatar gptAvatar">
                             <svg width="24" height="24">
@@ -2747,6 +2942,7 @@
                             </svg>
                         </div>
                         <div>GPT-4o</div>
+                        <div class="model-status unknown" data-model="gpt-4o" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="gpt-4o-mini" data-type="1" data-ver="4o mini">
                         <div class="modelAvatar gptAvatar">
@@ -2755,6 +2951,7 @@
                             </svg>
                         </div>
                         <div>GPT-4o-mini</div>
+                        <div class="model-status unknown" data-model="gpt-4o-mini" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="anthropic/claude-3.5-sonnet" data-type="1"
                         data-ver="3.5 Sonnet">
@@ -2764,6 +2961,8 @@
                             </svg>
                         </div>
                         <div>Claude 3.5 Sonnet</div>
+                        <div class="model-status unknown" data-model="anthropic/claude-3.5-sonnet" title="点击测试连通性">
+                        </div>
                     </div>
                     <!-- <div class="modelSingle" data-value="google/gemini-2.0-flash-exp" data-type="1" data-ver="2.0 Flash">
                         <div class="modelAvatar">
@@ -2780,6 +2979,7 @@
                             </svg>
                         </div>
                         <div>Gemini 1.5 Flash</div>
+                        <div class="model-status unknown" data-model="google/gemini-flash-1.5" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="meta-llama/llama-3.1-70b-instruct" data-type="1"
                         data-ver="3.1 70B">
@@ -2789,6 +2989,8 @@
                             </svg>
                         </div>
                         <div>Llama 3.1 70B</div>
+                        <div class="model-status unknown" data-model="meta-llama/llama-3.1-70b-instruct"
+                            title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="deepseek/deepseek-chat" data-type="1" data-ver="Chat">
                         <div class="modelAvatar">
@@ -2797,6 +2999,7 @@
                             </svg>
                         </div>
                         <div>DeepSeek Chat</div>
+                        <div class="model-status unknown" data-model="deepseek/deepseek-chat" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="x-ai/grok-beta" data-type="1" data-ver="Grok 3">
                         <div class="modelAvatar">
@@ -2805,6 +3008,7 @@
                             </svg>
                         </div>
                         <div>Grok 3</div>
+                        <div class="model-status unknown" data-model="x-ai/grok-beta" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="deepseek/deepseek-r1" data-type="1" data-ver="Reasoner">
                         <div class="modelAvatar">
@@ -2813,6 +3017,7 @@
                             </svg>
                         </div>
                         <div>DeepSeek Reasoner</div>
+                        <div class="model-status unknown" data-model="deepseek/deepseek-r1" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="mistralai/mistral-small" data-type="1" data-ver="Small 3.2">
                         <div class="modelAvatar">
@@ -2821,6 +3026,7 @@
                             </svg>
                         </div>
                         <div>Mistral Small 3.2</div>
+                        <div class="model-status unknown" data-model="mistralai/mistral-small" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="anthropic/claude-3.5-haiku" data-type="1" data-ver="3.5 Haiku">
                         <div class="modelAvatar">
@@ -2829,6 +3035,7 @@
                             </svg>
                         </div>
                         <div>Claude 3.5 Haiku</div>
+                        <div class="model-status unknown" data-model="anthropic/claude-3.5-haiku" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle" data-value="microsoft/phi-3.5-mini-instruct" data-type="1"
                         data-ver="Phi 3.5">
@@ -2838,6 +3045,8 @@
                             </svg>
                         </div>
                         <div>Phi 3.5 Mini</div>
+                        <div class="model-status unknown" data-model="microsoft/phi-3.5-mini-instruct" title="点击测试连通性">
+                        </div>
                     </div>
                     <div class="modelSingle hide" id="customGPTDOM" data-type="1" data-value="" data-ver="">
                         <div class="modelAvatar">
@@ -2846,6 +3055,7 @@
                             </svg>
                         </div>
                         <div></div>
+                        <div class="model-status unknown" data-model="" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle hide" id="customDeepSeekDOM" data-type="2" data-value="" data-ver="">
                         <div class="modelAvatar">
@@ -2854,6 +3064,7 @@
                             </svg>
                         </div>
                         <div></div>
+                        <div class="model-status unknown" data-model="" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle hide" id="customAzureAIDOM" data-type="3" data-value="" data-ver="">
                         <div class="modelAvatar">
@@ -2862,6 +3073,7 @@
                             </svg>
                         </div>
                         <div></div>
+                        <div class="model-status unknown" data-model="" title="点击测试连通性"></div>
                     </div>
                     <div class="modelSingle hide" id="customGeminiDOM" data-type="4" data-value="" data-ver="">
                         <div class="modelAvatar">
@@ -7358,14 +7570,14 @@
                 localStorage.setItem("APIKey", customAPIKey);
             }
             keyEle.dispatchEvent(new Event("change"));
-            
+
             // Custom DOM elements
             const customGPTDOM = document.getElementById("customGPTDOM");
             const customDeepSeekDOM = document.getElementById("customDeepSeekDOM");
             const customAzureAIDOM = document.getElementById("customAzureAIDOM");
             const customGeminiDOM = document.getElementById("customGeminiDOM");
             const customClaudeDOM = document.getElementById("customClaudeDOM");
-            
+
             const modelEle = document.getElementById("modelInput");
             let localModel = localStorage.getItem("APIModel");
             customAPIModel = envAPIModel || localModel || modelEle.getAttribute("value") || "";
@@ -9255,6 +9467,135 @@
             }
         }
         loadPrompt();
+
+        // 模型连通性测试功能
+        let modelTestResults = {}; // 存储测试结果
+
+        // 测试单个模型
+        async function testSingleModel(modelValue, statusElement) {
+            if (!modelValue) return;
+
+            // 更新状态为测试中
+            statusElement.className = 'model-status testing';
+            statusElement.title = '测试中...';
+
+            try {
+                const testMessage = [{ role: "user", content: "Hi" }];
+                let url, headers = { "Content-Type": "application/json" };
+                let body;
+
+                // 根据模型类型确定API配置
+                if (modelValue.startsWith('gpt') || modelValue.startsWith('anthropic') ||
+                    modelValue.startsWith('google') || modelValue.startsWith('meta-llama') ||
+                    modelValue.startsWith('deepseek') || modelValue.startsWith('x-ai') ||
+                    modelValue.startsWith('mistralai') || modelValue.startsWith('microsoft')) {
+                    // OpenRouter模型
+                    url = apiHost + ((apiHost.length && !apiHost.endsWith("/")) ? "/" : "") + API_URL;
+                    if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
+                    body = JSON.stringify({
+                        messages: testMessage,
+                        model: modelValue,
+                        stream: false,
+                        max_tokens: 5
+                    });
+                } else {
+                    // 其他模型类型的处理逻辑可以在这里添加
+                    throw new Error('不支持的模型类型');
+                }
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒超时
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: body,
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.status === 200) {
+                    // 测试成功
+                    statusElement.className = 'model-status success';
+                    statusElement.title = '连接正常 (200)';
+                    modelTestResults[modelValue] = { status: 'success', code: 200 };
+                } else {
+                    // HTTP错误
+                    statusElement.className = 'model-status error';
+                    statusElement.title = `连接失败 (${response.status})`;
+                    modelTestResults[modelValue] = { status: 'error', code: response.status };
+                }
+            } catch (error) {
+                // 网络错误或超时
+                statusElement.className = 'model-status error';
+                if (error.name === 'AbortError') {
+                    statusElement.title = '连接超时';
+                    modelTestResults[modelValue] = { status: 'error', code: 'timeout' };
+                } else {
+                    statusElement.title = `连接错误: ${error.message}`;
+                    modelTestResults[modelValue] = { status: 'error', code: 'network_error' };
+                }
+            }
+        }
+
+        // 测试所有模型
+        async function testAllModels() {
+            const testButton = document.querySelector('.test-all-btn');
+            const statusElements = document.querySelectorAll('.model-status');
+
+            // 禁用按钮并更新文本
+            testButton.disabled = true;
+            testButton.className = 'test-all-btn testing';
+            testButton.innerHTML = '⏳ 测试中...';
+
+            // 清空之前的测试结果
+            modelTestResults = {};
+
+            // 收集所有需要测试的模型
+            const modelsToTest = [];
+            statusElements.forEach(statusElement => {
+                const modelValue = statusElement.getAttribute('data-model');
+                if (modelValue) {
+                    modelsToTest.push({ modelValue, statusElement });
+                }
+            });
+
+            // 分批执行测试，限制并发数量以避免过多请求
+            const batchSize = 3; // 每批最多3个并发请求
+            for (let i = 0; i < modelsToTest.length; i += batchSize) {
+                const batch = modelsToTest.slice(i, i + batchSize);
+                const batchPromises = batch.map(({ modelValue, statusElement }) =>
+                    testSingleModel(modelValue, statusElement)
+                );
+                await Promise.all(batchPromises);
+
+                // 在批次之间添加短暂延迟
+                if (i + batchSize < modelsToTest.length) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
+
+            // 恢复按钮状态
+            testButton.disabled = false;
+            testButton.className = 'test-all-btn';
+            testButton.innerHTML = '⚡ 测试所有模型';
+
+            // 显示测试结果摘要
+            const successCount = Object.values(modelTestResults).filter(r => r.status === 'success').length;
+            const totalCount = Object.keys(modelTestResults).length;
+            notyf.success(`测试完成: ${successCount}/${totalCount} 个模型连接正常`);
+        }
+
+        // 添加单个模型状态点击测试功能
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('model-status')) {
+                const modelValue = event.target.getAttribute('data-model');
+                if (modelValue) {
+                    testSingleModel(modelValue, event.target);
+                }
+            }
+        });
     </script>
 </body>
 
